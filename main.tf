@@ -1,6 +1,5 @@
 provider "aws" {
-  region  = "s-west-2"
-  profile = "personal"
+  region  = "us-west-2"
 }
 
 resource "random_string" "random" {
@@ -12,7 +11,7 @@ resource "random_string" "random" {
 module "s3_bucket" {
   source = "terraform-aws-modules/s3-bucket/aws"
 
-  bucket = "tf-managed-bucket-${random_string.random}"
+  bucket = "tf-managed-bucket-${random_string.random.result}"
   acl    = "private"
 
   control_object_ownership = true
